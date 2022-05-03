@@ -1,4 +1,4 @@
-import './categories.styles.scss';
+import CategoriesContainer from './components/CategoriesContainer';
 
 const App = () => {
 	const categories = [
@@ -29,24 +29,7 @@ const App = () => {
 		},
 	];
 
-	// can pass JavaScript object through 'style' property, which React converts (from camelCase)
-	// to CSS (kebab case)
-	return (
-		<div className='categories-container'>
-			{categories.map(({ id, imageUrl, title }) => (
-				<div className='category-container' key={id}>
-					<div
-						className='background-image'
-						style={{ backgroundImage: `url(${imageUrl})` }}
-					></div>
-					<div className='category-body-container'>
-						<h2>{title}</h2>
-						<p>Shop Now</p>
-					</div>
-				</div>
-			))}
-		</div>
-	);
+	return <CategoriesContainer categories={categories} />;
 };
 
 export default App;
