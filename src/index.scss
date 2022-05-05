@@ -9,3 +9,13 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 		monospace;
 }
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+// changes how the width/height is calculated so they aren't affected by padding, borders, etc
+* {
+	box-sizing: border-box;
+}
