@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
-import FormInput from '../FormInput';
 import Button from '../Button';
+import FormInput from '../FormInput';
+import { UserContext } from '../../contexts/UserContext';
 import './styles.scss';
 
 import {
@@ -19,6 +20,8 @@ const defaultFormFields = {
 const SignUpForm = () => {
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const { displayName, email, password, confirmPassword } = formFields;
+
+	const { setCurrentUser } = useContext(UserContext);
 
 	const resetFormFields = () => {
 		setFormFields(defaultFormFields);
@@ -42,7 +45,9 @@ const SignUpForm = () => {
 				password
 			);
 
-			// create a user doc from what	'createAuthUserWithEmailAndPassword()' returns
+			setCurrentUser(user);
+
+			// create a user doc from what 'createAuthUserWithEmailAndPassword()' returns
 			// displayName, password is not stored in auth doc, but stored in db
 			await createUserDocumentFromAuth(user, { displayName });
 
