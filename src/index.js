@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
 import { UserProvider } from './contexts/UserContext';
+import { ProductsProvider } from './contexts/ProductsContext';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -13,7 +14,9 @@ root.render(
 		{/* Allows routing based on URL */}
 		<BrowserRouter>
 			<UserProvider>
-				<App />
+				<ProductsProvider>
+					<App />
+				</ProductsProvider>
 			</UserProvider>
 		</BrowserRouter>
 	</React.StrictMode>
