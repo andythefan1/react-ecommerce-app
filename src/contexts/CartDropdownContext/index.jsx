@@ -25,7 +25,7 @@ export const CartContext = createContext({
 	quantity: 0,
 });
 
-export const CartProdiver = ({ children }) => {
+export const CartProvider = ({ children }) => {
 	const [isCartOpen, setIsCartOpen] = useState(false);
 	const [cartItems, setCartItems] = useState([]);
 	const [quantity, setQuantity] = useState(0);
