@@ -14,7 +14,7 @@ const addCartItem = (cartItems, product) => {
 };
 
 export const calculateQuantity = (cartItems) => {
-	return;
+	return cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0);
 };
 
 export const CartContext = createContext({
@@ -31,10 +31,7 @@ export const CartProdiver = ({ children }) => {
 	const [quantity, setQuantity] = useState(0);
 
 	useEffect(() => {
-		const quantity = cartItems.reduce(
-			(total, cartItem) => total + cartItem.quantity,
-			0
-		);
+		const quantity = calculateQuantity(cartItems);
 		setQuantity(quantity);
 	}, [cartItems]);
 
