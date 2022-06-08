@@ -12,7 +12,7 @@ const App = () => {
 			<Route path='/' element={<Navigation />}>
 				{/* index: a child route with no path that renders parent's outlet */}
 				<Route index element={<Dashboard />} />
-				<Route path='shop' element={<Shop />} />
+				<Route path='shop/*' element={<Shop />} />
 				<Route path='auth' element={<Authentication />} />
 				<Route path='checkout' element={<Checkout />}></Route>
 			</Route>
