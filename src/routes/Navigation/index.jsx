@@ -3,7 +3,7 @@ import { Link, Outlet } from 'react-router-dom';
 
 import CartIcon from '../../components/CartIcon/CartIcon';
 import CartDropdown from '../../components/CartDropdown';
-import { CartContext } from '../../contexts/CartDropdownContext';
+import { CartContext } from '../../contexts/CartContext';
 import { UserContext } from '../../contexts/UserContext';
 import { signOutUser } from '../../utils/firebase/utils';
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
