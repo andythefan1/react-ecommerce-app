@@ -75,9 +75,13 @@ export const CartProvider = ({ children }) => {
 	const [quantity, setQuantity] = useState(0);
 	const [totalPrice, setTotalPrice] = useState(0);
 
+	// each useEffect should govern one single responsibilty
 	useEffect(() => {
 		const quantity = calculateQuantity(cartItems);
 		setQuantity(quantity);
+	}, [cartItems]);
+
+	useEffect(() => {
 		const totalPrice = calculateTotalPrice(cartItems);
 		setTotalPrice(totalPrice);
 	}, [cartItems]);
