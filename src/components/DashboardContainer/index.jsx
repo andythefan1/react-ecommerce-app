@@ -1,7 +1,7 @@
 import DashboardItem from '../DashboardItem/index';
 import './styles.scss';
 
-const CategoriesContainer = ({ categories }) => {
+const DashboardContainer = ({ categories }) => {
 	return (
 		<div className='categories-container'>
 			{categories.map((category) => (
@@ -11,4 +11,4 @@ const CategoriesContainer = ({ categories }) => {
 	);
 };
 
-export default CategoriesContainer;
+export default DashboardContainer;

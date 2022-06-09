@@ -6,7 +6,25 @@
 }
 
 .category-title {
-	font-size: 38px;
+	// font-size: 38px;
 	margin-bottom: 25px;
 	text-align: center;
+	flex: 1;
+}
+
+.category-container-header {
+	display: flex;
+	align-items: center;
+}
+
+.space {
+	flex: 1;
+}
+
+.back-button {
+	flex: 1;
+
+	&:hover {
+		cursor: pointer;
+	}
 }

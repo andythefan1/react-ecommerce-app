@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-import CategoriesContainer from '../../components/CategoriesContainer';
+import DashboardContainer from '../../components/DashboardContainer';
 
 const Dashboard = () => {
 	const categories = [
@@ -34,7 +34,7 @@ const Dashboard = () => {
 	return (
 		<div>
 			<Outlet />
-			<CategoriesContainer categories={categories} />
+			<DashboardContainer categories={categories} />
 		</div>
 	);
 };
