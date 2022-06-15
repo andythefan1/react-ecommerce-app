@@ -1,13 +1,13 @@
 import DashboardItem from '../DashboardItem/index';
-import './styles.scss';
+import { CategoriesContainer } from './styles';
 
 const DashboardContainer = ({ categories }) => {
 	return (
-		<div className='categories-container'>
+		<CategoriesContainer className='categories-container'>
 			{categories.map((category) => (
 				<DashboardItem category={category} key={category.id} />
 			))}
-		</div>
+		</CategoriesContainer>
 	);
 };
 

@@ -1,6 +1,15 @@
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/CartContext';
-import './styles.scss';
+
+import {
+	CheckoutItemContainer,
+	ImageContainer,
+	CheckoutSpan,
+	Quantity,
+	Arrow,
+	Value,
+	RemoveButton,
+} from './styles';
 
 const CheckoutItem = ({ item }) => {
 	const { addItemToCart, removeItemFromCart, updateItemQuantity } =
@@ -14,28 +23,21 @@ const CheckoutItem = ({ item }) => {
 	};
 
 	return (
-		<div className='checkout-item-container' key={id}>
-			<div className='image-container'>
+		<CheckoutItemContainer key={id}>
+			<ImageContainer>
 				<img src={imageUrl} alt={name} />
-			</div>
-			<span className='name'>{name}</span>
-			<span className='quantity'>
-				<div className='arrow' onClick={handleRemoveItemFromCart}>
-					&#10094;
-				</div>
-				<span className='value'>{quantity} </span>
-				<div className='arrow' onClick={handleAddItemToCart}>
-					&#10095;
-				</div>
-			</span>
-			<div className='price'>{price}</div>
-			<div
-				className='remove-button'
-				onClick={() => handleUpdateItemQuantity(0)}
-			>
+			</ImageContainer>
+			<CheckoutSpan>{name}</CheckoutSpan>
+			<Quantity>
+				<Arrow onClick={handleRemoveItemFromCart}>&#10094;</Arrow>
+				<Value>{quantity} </Value>
+				<Arrow onClick={handleAddItemToCart}>&#10095;</Arrow>
+			</Quantity>
+			<CheckoutSpan>{price}</CheckoutSpan>
+			<RemoveButton onClick={() => handleUpdateItemQuantity(0)}>
 				&#10005;
-			</div>
-		</div>
+			</RemoveButton>
+		</CheckoutItemContainer>
 	);
 };
 

@@ -3,7 +3,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { CategoriesContext } from '../../contexts/CategoriesContext';
 import ProductCard from '../../components/ProductCard';
 
-import './styles.scss';
+import {
+	CategoryContainer,
+	CategoryHeader,
+	CategoryTitle,
+	Back,
+	Space,
+} from './styles';
 
 const Category = () => {
 	const { category } = useParams();
@@ -18,19 +24,19 @@ const Category = () => {
 
 	return (
 		<Fragment>
-			<div className='category-container-header'>
-				<div className='back-button' onClick={() => navigate(-1)}>
+			<CategoryHeader>
+				<Back className='back-button' onClick={() => navigate(-1)}>
 					&lt; CATEGORIES
-				</div>
-				<h2 className='category-title'>ALL {category.toUpperCase()}</h2>
-				<div className='space'></div>
-			</div>
-			<div className='category-container'>
+				</Back>
+				<CategoryTitle>ALL {category.toUpperCase()}</CategoryTitle>
+				<Space></Space>
+			</CategoryHeader>
+			<CategoryContainer>
 				{products &&
 					products.map((product) => (
 						<ProductCard key={product.id} product={product} />
 					))}
-			</div>
+			</CategoryContainer>
 		</Fragment>
 	);
 };
