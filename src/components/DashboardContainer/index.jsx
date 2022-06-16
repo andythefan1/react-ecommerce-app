@@ -3,7 +3,7 @@ import { CategoriesContainer } from './styles';
 
 const DashboardContainer = ({ categories }) => {
 	return (
-		<CategoriesContainer className='categories-container'>
+		<CategoriesContainer>
 			{categories.map((category) => (
 				<DashboardItem category={category} key={category.id} />
 			))}

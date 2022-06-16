@@ -19,7 +19,7 @@ export const Group = styled.div`
 `;
 
 export const FormInputLabel = styled.label`
-	color: $sub-color;
+	color: ${subColor};
 	font-size: 16px;
 	font-weight: normal;
 	position: absolute;
@@ -27,6 +27,8 @@ export const FormInputLabel = styled.label`
 	left: 5px;
 	top: 10px;
 	transition: 300ms ease all;
+
+	/* if this boolean is passed through props apply these styles */
 	${({ shrink }) => shrink && shrinkLabelStyles};
 `;
 
@@ -42,9 +44,11 @@ export const Input = styled.input`
 	border-radius: 0;
 	border-bottom: 1px solid ${subColor};
 	margin: 25px 0;
+
 	&:focus {
 		outline: none;
 	}
+
 	&:focus ~ ${FormInputLabel} {
 		${shrinkLabelStyles};
 	}
