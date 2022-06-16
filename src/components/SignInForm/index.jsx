@@ -7,7 +7,7 @@ import {
 
 import { SignUpContainer, ButtonsContainer } from './styles';
 import FormInput from '../FormInput';
-import Button from '../Button';
+import Button, { BUTTON_TYPE_CLASSES } from '../Button';
 
 const defaultFormFields = {
 	email: '',
@@ -88,7 +88,7 @@ const SignInForm = () => {
 			<ButtonsContainer>
 				<Button children='Sign in' onClick={handleSubmit} type='submit' />
 				<Button
-					buttonType='google'
+					buttonType={`${BUTTON_TYPE_CLASSES.google}`}
 					children='Google Sign in'
 					onClick={signInWithGoogle}
 					type='button'
