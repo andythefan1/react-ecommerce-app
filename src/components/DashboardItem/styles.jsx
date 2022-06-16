@@ -34,7 +34,7 @@ export const DashboardItemBody = styled.div`
 	}
 `;
 
-export const DashboardItemContainer = styled(Link)`
+export const DashboardItemContainer = styled.div`
 	min-width: 30%;
 	height: 480px;
 	// height: 240px;
