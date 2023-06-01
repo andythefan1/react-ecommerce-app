@@ -1,26 +1,54 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useReducer } from 'react';
 import {
 	createUserDocumentFromAuth,
 	onAuthStateChangedListener,
 } from '../../utils/firebase/utils';
 
-// Storage for user
-// pass in 'default' value (the actual value you want to access), not initial value
-export const UserContext = createContext({
+const USER_ACTION_TYPES = {
+	SET_CURRENT_USER: 'SET_CURRENT_USER',
+};
+
+const INITIAL_USER_STATE = {
+	currentUser: null,
+};
+
+const INITIAL_USER_CONTEXT = {
 	currentUser: null,
 	setCurrentUser: () => null,
-});
+};
 
-// Determines which components have access to above context
-// Provider allows any of its child components to access its values (useState())
+const userReducer = (state, action) => {
+	const { type, payload } = action;
+	switch (action.type) {
+		case USER_ACTION_TYPES.SET_CURRENT_USER: {
+			return { ...state, currentUser: payload };
+		}
+		default: {
+			throw new Error(`Unhandled type ${type} in userReducer()`);
+		}
+	}
+};
+
+// allow all children of provider to access and set user state
+export const UserContext = createContext(INITIAL_USER_CONTEXT);
+
+// provides user context to children components
+// instead of having components call dispatch, provide setter function
 export const UserProvider = ({ children }) => {
-	const [currentUser, setCurrentUser] = useState(null);
-	const value = {
-		currentUser,
-		setCurrentUser,
+	const [{ currentUser }, dispatch] = useReducer(
+		userReducer,
+		INITIAL_USER_STATE
+	);
+
+	const setCurrentUser = (user) => {
+		dispatch({
+			type: USER_ACTION_TYPES.SET_CURRENT_USER,
+			payload: user,
+		});
 	};
 
-	// only run on mount
+	const userState = { currentUser, setCurrentUser };
+
 	useEffect(() => {
 		// delete this listener when this component unmounts, otherwise can cause memory leak
 		const unsubscribe = onAuthStateChangedListener((user) => {
@@ -30,9 +58,11 @@ export const UserProvider = ({ children }) => {
 			setCurrentUser(user);
 		});
 
-		// useEffect will run whatever is returned when this component unmounts
+		// clean up user subscription
 		return unsubscribe;
 	}, []);
 
-	return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+	return (
+		<UserContext.Provider value={userState}>{children}</UserContext.Provider>
+	);
 };
