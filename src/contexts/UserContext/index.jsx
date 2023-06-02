@@ -47,7 +47,7 @@ export const UserProvider = ({ children }) => {
 		});
 	};
 
-	const userState = { currentUser, setCurrentUser };
+	const userContext = { currentUser, setCurrentUser };
 
 	useEffect(() => {
 		// delete this listener when this component unmounts, otherwise can cause memory leak
@@ -63,6 +63,6 @@ export const UserProvider = ({ children }) => {
 	}, []);
 
 	return (
-		<UserContext.Provider value={userState}>{children}</UserContext.Provider>
+		<UserContext.Provider value={userContext}>{children}</UserContext.Provider>
 	);
 };
